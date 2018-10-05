@@ -1,33 +1,118 @@
-.head {
-  background: #FFFFFF;
-  height: 60px;
+/* -- Header --- */
+img.imagen {
+  width: 30px;
+  border-radius: 50%;
 }
 
-img.logo-header{
-  width: 100%;
+header {
+  background: #fff;
+  padding: 8px 0;
+  font-size: 16px;
 }
+
+header span {
+  color: #5c5c5c;
+  font-weight: bold;
+}
+
+header .logo {
+  text-align: left;
+}
+
+header .logo img {
+  height: 40px;
+}
+
+header div #profile {
+  padding-top: 10px;
+  text-align: right;
+}
+
+span.displayName {
+  margin-right: 5px;
+}
+
+.info {
+  padding-top: 6px;
+}
+
+/* -- MENÚ NAVEGACIÓN --*/
 
 i{
-  color:white;
-  font-size: 6em; 
-}
-
-i:hover{
-  color: rgb(169, 238, 243); 
+  color:#FFFFFF;
+  font-size: 4em; 
 }
 
 .icon-menu {
-  padding: 40px;
-  border: 1px solid white;
-}
-.icon-menu-two {
-  /* margin-top: 20px; */
-  padding: 40px;
-  border: 1px solid white;
-}
-.icon-menu-three {
-  /* margin-top: 20px; */
-  padding: 40px;
-  border: 1px solid white;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #ca4f29;
 }
 
+.icon-menu-one {
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #a1bf3a
+}
+
+.icon-menu-two {
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #bb64af
+  
+}
+.icon-menu-three {
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #4372b2
+}
+.icon-menu-four {
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #db9027
+}
+.icon-menu-five {
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #69aa6c
+}
+.icon-menu-five:hover {
+  background-color: #5c5c5e;
+}
+.icon-menu-four:hover {
+  background-color: #5c5c5e;
+}
+.icon-menu-three:hover {
+  background-color: #5c5c5e;
+}
+.icon-menu-two:hover {
+  background-color: #5c5c5e;
+}
+.icon-menu-one:hover {
+  background-color: #5c5c5e;
+}
+.icon-menu:hover {
+  background-color: #5c5c5e;
+}
+
+.option{
+  font-size: 1.5em;
+  font-weight: 800;
+  color: #4d2c91;
+}
+
+.title-menu {
+  margin-left: 12px;
+  font-size: 2em;
+  color: #4d2c91;
+  font-weight: 600;
+}
+
+.title-menu:hover{
+  color: white
+}
+
+/*--MAPA --*/
+.mapaHide{
+  
+}

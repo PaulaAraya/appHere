@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { HereService } from '../services/here.service';
+import { AuthService } from '../Services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 declare var H: any;
 @Component({
   selector: 'app-here-map',
@@ -7,18 +9,22 @@ declare var H: any;
   styleUrls: ['./here-map.component.css']
 })
 export class HereMapComponent implements OnInit {
-
+  @Output()
+  // @ouput() dataShared:boolean = false;
   @ViewChild('map')
   public mapElement: ElementRef;
 
   markerUser: any;
   public query: string;
-  public constructor(private hereService: HereService) {
+  public constructor(private hereService: HereService, public auth: AuthService,
+  public afAuth: AngularFireAuth) {
     this.query = '';
         this.start = '37.7397,-121.4252'; // se vincularán a nuestro formulario start y finish
         this.finish = '37.6819,-121.7680';
     this.platform = this.hereService.hereServicePlatform();
  }
+
+  public userQuery: string;
   private ui: any;
   private search: any;
   public map: any;
@@ -33,9 +39,9 @@ export class HereMapComponent implements OnInit {
   public finish: any;
   public directions: any;
   private router: any;
-  array: string[];
-  resultCoordList: any;
-  // tslint:disable-next-line:max-lin
+  photo: string;
+  name: string;
+
   // funcionalidad se inicializa antes de que la vista esté lista, de ahí el ngOnInit
   public ngOnInit() {
     this.search = new H.places.Search(this.platform.getPlacesService());
@@ -46,6 +52,14 @@ export class HereMapComponent implements OnInit {
         this.centerPosition();
       });
     }
+    // console.log('aqui '+this.userQuery);
+
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.name = user.displayName;
+        this.photo = user.photoURL;
+      }
+    });
   }
 
   centerPosition() {
@@ -63,6 +77,15 @@ export class HereMapComponent implements OnInit {
     this.displayCurrentPosition();
     const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
     this.ui = H.ui.UI.createDefault(this.map, defaultLayers);
+  }
+
+  // catch query menu
+  public catchQuery(query: string) {
+    // this.userQuery = value;
+    // console.log('holi ' +value);
+    this.places(query);
+    // this.places(query);
+   // return this.queryReceptor.emit(resp);
   }
 
   // Buscador
