@@ -33,7 +33,9 @@ export class HereMapComponent implements OnInit {
   public finish: any;
   public directions: any;
   private router: any;
-
+  array: string[];
+  resultCoordList: any;
+  // tslint:disable-next-line:max-lin
   // funcionalidad se inicializa antes de que la vista esté lista, de ahí el ngOnInit
   public ngOnInit() {
     this.search = new H.places.Search(this.platform.getPlacesService());
@@ -69,10 +71,22 @@ export class HereMapComponent implements OnInit {
     this.search.request({ 'q': query, 'at': this.lat + ',' + this.lng }, {}, data => {
       for (let i = 0; i < data.results.items.length; i++) {
         this.dropMarker({ 'lat': data.results.items[i].position[0], 'lng': data.results.items[i].position[1] }, data.results.items[i]);
+        // this.array.push(data.results.items[i].title, data.results.items[i].vicinity);
+        // console.log(data.results.items[i].title);
+       this.listPlaces({ 'lat': data.results.items[i].position[0], 'lng': data.results.items[i].position[1] }, data.results.items[i]);
+        // console.log(this.array.push(data.results.items[i].title, data.results.items[i].vicinity));
       }
     }, error => {
       console.error(error);
     });
+  }
+
+  // Lista
+  private listPlaces(coordinates: any, data: any) {
+    const coordList = coordinates;
+    // tslint:disable-next-line:max-line-length
+    const resultCoordList = coordList.setData(`<ul class="list-group list-group-flush" style="width: 100%;"> <li class="list-group-item"><h6 class="card-title"> ${data.title} </h6> <p class="card-text text-justify> Direccion: ${data.vicinity}</p> </li> </ul>`);
+     resultCoordList;
   }
   // Marcadores
   private dropMarker(coordinates: any, data: any) {
